@@ -2,6 +2,7 @@ package org.example;
 
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
+import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.requests.GatewayIntent;
@@ -31,11 +32,44 @@ public class ITYSSBot extends ListenerAdapter {
             return;
         switch (event.getName())
         {
-            case "beter":
-                //beter(event); // content is required so no null-check here
+            case "enable":
+                enablePelting(event);
                 break;
+            case "disable":
+                disablePelting(event);
+            case "pelt":
+
             default:
                 event.reply("I can't handle that command right now :(").setEphemeral(true).queue();
         }
+    }
+
+    /**
+     *  Enrolls the user in pelting "algorithms"
+     *  Users are not pelted by default, I'm not that mean!
+     *
+     *  @param event
+     */
+    public void enablePelting(SlashCommandInteractionEvent event) {
+        Member unfortunateSoul = event.getMember();
+        //add member to pelting repository
+        //If member doesn't exist in repository, enable
+        //If member does exist, enable again, then check if they are in any voice servers
+    }
+
+    /**
+     * Unenrolls the user from pelting "algorithms"
+     *
+     * @param event
+     */
+    public void disablePelting(SlashCommandInteractionEvent event) {
+        Member unfortunateSoul = event.getMember();
+        //If user has an account, disable them from triggers and pelting
+        //If no account, print error message
+
+    }
+
+    public void pelt() {
+
     }
 }
